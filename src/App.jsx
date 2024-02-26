@@ -1,38 +1,51 @@
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import './App.css';
 import SearchForm from './Search/search';
-import Upset from '../src/images/Upset woman with hands.png'
 
 function App() {
   const [articles, setArticles] = useState([]);
   const [isActive, setIsActive] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
-  const [quote, setQuote] = useState('');
-  
+  const [date, setDate] = useState(new Date());
+  const cardRef = useRef(null);
 
+
+  useEffect(() => {
+    const timerID = setInterval(() => tick(), 1000);
+    return function cleanup() {
+      clearInterval(timerID);
+    };
+  }, []);
+
+  const tick = () => {
+    setDate(new Date());
+  }
 
 
 
 
 
   useEffect(() => {
-    const fetchQuote = () => {
-    fetch('https://api.kanye.rest')
-    .then(response => response.json())
-    .then(data => setQuote(data.quote));
+    const handleMouseMove = (event) => {
+      const {clientX, clientY} = event;
+      const {innerWidth, innerHeight} = window;
 
-    }
+      const xPos = (clientX - innerWidth / 2) / 25;
+      const yPos = (clientY - innerHeight / 2) / 25;
+      cardRef.current.style.transform = `rotateY(${xPos}deg) rotateX(${yPos}deg)`;
+    };
 
-    fetchQuote();
+    window.addEventListener('mousemove', handleMouseMove);
 
-    const intervalID = setInterval(fetchQuote, 20000);
-
-    return () => clearInterval(intervalID);
+    return () => {
+      window.removeEventListener('mousemove', handleMouseMove);
+    };
   }, []);
+  
 
-
-
+  
+  
 
 
   useEffect(() => {
@@ -63,26 +76,40 @@ function App() {
       });
   }, []);
 
+
+
+  const toggleMenu = () => {
+    setIsActive(!isActive);
+  }
+
   return (
     <>
      <nav className="navbar">
-  <div className={`navbar-links ${isActive ? "active" : ""}`}>
-    <ul>
-      <li><a href="/">Home</a></li>
-      <li><a href="#">About</a></li>
-      <li><a href="#">Services</a></li>
-      <li><a href="#">Contact</a></li>
-      <img className='Avatar' src={Upset} />
-    </ul>
-    <div className='quote'>
-      {quote}
-    </div>
-  </div>
-</nav>
+        <button onClick={toggleMenu}>
+          <div className={`hamburger ${isActive ? "active" : ""}`}>
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+        </button>
+        <div className={`navbar-links ${isActive ? "active" : ""}`}>
+          <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Services</a></li>
+            <li><a href="#">Contact</a></li>
+          </ul>
+        </div>
+      </nav>
+ 
+
+          <div className='clock'>
+          <h2>{new Intl.DateTimeFormat('en-US', { hour: 'numeric', minute: 'numeric', second: 'numeric', hour12: true }).format(date)}</h2>
+          </div>
 
       <SearchForm />
 
-   
+      
 
       <img src='../src/images/Blindfolded Woman High Res.png' alt='city' className='header-image' />
 
@@ -91,7 +118,7 @@ function App() {
         {articles && articles.map((article, index) => {
           const imageUrl = article.media && article.media[0] && article.media[0]['media-metadata'] && article.media[0]['media-metadata'][0] ? article.media[0]['media-metadata'][0].url : '';
           return (
-            <div key={index} className="article">
+            <div key={index} className="article" ref={cardRef}>
               <h2>{article.title}</h2>
               <p>{article.abstract}</p>
               <a href={article.url}>Read more</a>
