@@ -66,7 +66,7 @@
     display: inline-block;
     margin-top: 10px;
     padding: 10px 20px;
-    background-color: #333;
+    background-color: #eee6e6;
     color: #fff;
     text-decoration: none;
     border-radius: 5px;
@@ -74,28 +74,30 @@
 }
 
 .result-link:hover {
-    background-color: #555;
+    background-color: #fbf8f8;
 }
 
 datalist {
-    background-color: #181717;
-    color: #020202;
+    background-color: #f0ecec;
+    color: #f5f0f0;
 }
 
 datalist option {
     padding: 10px;
     cursor: pointer;
-    background-color: black;
+    background-color: rgb(230, 213, 213);
 }
 
 
 .suggestions {
     position: absolute;
-    background-color: #fff;
-    width: 100%;
+    background-color: #050404;
+    width: 50%;
     border: 1px solid #ddd;
     border-radius: 5px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    color : #fff;
+    margin-top: 50px;
 }
 
 .suggestion {
@@ -104,7 +106,7 @@ datalist option {
 }
 
 .suggestion:hover {
-    background-color: #eee;
+    background-color: #1f1e1e;
 }
 
 .result-image {
@@ -115,7 +117,7 @@ datalist option {
     object-fit: cover;
     margin: 10px auto;
     border-radius: 5px;
-    border: 1px solid #ddd;
+    border: 1px solid #dad3d3;
     padding: 10px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
@@ -191,6 +193,8 @@ datalist option {
     width: 300px;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
     transition: box-shadow 0.3s ease;
+    background-color: #050404;
+    color: #fff;
 }
 
 .search-form input:focus {
@@ -205,8 +209,11 @@ datalist option {
 }
 
 .search-form {
-    margin-top: 20px; 
+    margin-top: 60px; 
     display: flex;
     justify-content: center;
+    position: absolute;
+    top: 0;
+    left: 72%;
   
 }

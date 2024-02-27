@@ -8,6 +8,13 @@
     padding: 20px;
     transition: background-color 0.3s ease;
     border-radius: 6px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    backdrop-filter: blur(10px);
+    margin: 20px;
+    max-width: 1000px;
+    margin: 20px auto;
+    overflow-wrap: break-word;
+
     
   }
 
@@ -300,38 +307,6 @@ html{
     padding: 20px;
   }
   
-  h2{
-    color: #fffbfb;
-    text-align: center;
-  }
-
-  .clock {
-    font-family: 'Bungee Inline';
-    font-size: 3em;
-    color: #000000;
-    text-align: center;
-    padding: 20px;
-    border-radius: 10px;
-    margin: 20px auto;
-    width: fit-content;
-    background: url('../src//images/Snowy.png');
-    background-size: cover;
-    box-shadow: 0px 0px 10px rgba(0,0,0,0.5), 0 0 5px #070707, 0 0 10px #000000, 0 0 15px #060606, 0 0 20px #000000;
-    backdrop-filter: blur(10px);
-    transition: transform 0.2s;
-  }
   
 
-  .clock:hover {
-    animation: bounce 2s infinite;
-  }
   
-
-  @keyframes bounce {
-    0%, 100% {
-      transform: translateY(0);
-    }
-    50% {
-      transform: translateY(-20px);
-    }
-  }

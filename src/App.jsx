@@ -7,20 +7,10 @@ function App() {
   const [articles, setArticles] = useState([]);
   const [isActive, setIsActive] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
-  const [date, setDate] = useState(new Date());
   const cardRef = useRef(null);
 
 
-  useEffect(() => {
-    const timerID = setInterval(() => tick(), 1000);
-    return function cleanup() {
-      clearInterval(timerID);
-    };
-  }, []);
-
-  const tick = () => {
-    setDate(new Date());
-  }
+  
 
 
 
@@ -103,9 +93,7 @@ function App() {
       </nav>
  
 
-          <div className='clock'>
-          <h2>{new Intl.DateTimeFormat('en-US', { hour: 'numeric', minute: 'numeric', second: 'numeric', hour12: true }).format(date)}</h2>
-          </div>
+        
 
       <SearchForm />
 
